@@ -1,0 +1,13 @@
+# Node
+node_modules
+dist
+.eslintcache
+
+# Platform specific
+.DS_Store
+*.local
+thumbs.db
+
+# Code editor
+.idea
+.vscode
