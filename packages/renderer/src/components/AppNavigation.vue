@@ -1,7 +1,7 @@
 <template>
   <nav>
     <router-link to="/">
-      Home
+      Tasks
     </router-link>
     <span> | </span>
     <router-link to="/about">
