@@ -62,17 +62,18 @@ app.on('second-instance', () => {
     }
 });
 
+// if (isDevelopment) {
+//     app.on('certificate-error', (event, webContents, url, error, certificate, callback) => {
+//         const regex = new RegExp('https://localhost:8080/*')
 
-// app.on('certificate-error', (event, webContents, url, error, certificate, callback) => {
-//     const regex = new RegExp('https://localhost:8080/*')
-
-//     if (regex.test(url)) {
-//         event.preventDefault()
-//         callback(true)
-//     } else {
-//         callback(false)
-//     }
-// })
+//         if (regex.test(url)) {
+//             event.preventDefault()
+//             callback(true)
+//         } else {
+//             callback(false)
+//         }
+//     })
+// }
 
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
