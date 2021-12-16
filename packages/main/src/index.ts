@@ -3,6 +3,8 @@ import { join } from 'path';
 import { URL } from 'url';
 import './security-restrictions';
 
+import Configuration from './configuration'
+
 const isSingleInstance = app.requestSingleInstanceLock();
 const isDevelopment = import.meta.env.MODE === 'development';
 
@@ -27,7 +29,12 @@ if (isDevelopment) {
 
 let mainWindow: BrowserWindow | null = null;
 
-const createWindow = async () => {
+const createApp = async () => {
+
+    Configuration.init();
+
+    const openWorkspace = Configuration.get_open_workspace();
+
     mainWindow = new BrowserWindow({
         show: true, // Use 'ready-to-show' event to show window
         webPreferences: {
@@ -60,11 +67,10 @@ const createWindow = async () => {
         },
     });
 
-    console.log(import.meta.env.VITE_STARTER_SERVER_URL);
-    // VITE_DEV_SERVER_LOGIN_URL
     const starterUrl = isDevelopment && import.meta.env.VITE_STARTER_SERVER_URL !== undefined
         ? import.meta.env.VITE_STARTER_SERVER_URL
         : new URL('../starter/dist/index.html', 'file://' + __dirname).toString();
+
     await secondWindow.loadURL(starterUrl);
 };
 
@@ -86,7 +92,7 @@ app.on('window-all-closed', () => {
 
 
 app.whenReady()
-    .then(createWindow)
+    .then(createApp)
     .catch((e) => console.error('Failed create window:', e));
 
 
