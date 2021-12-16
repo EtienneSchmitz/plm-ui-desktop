@@ -9,6 +9,7 @@ const packagesConfigs = [
   'packages/main/vite.config.js',
   'packages/preload/vite.config.js',
   'packages/renderer/vite.config.js',
+  'packages/starter/vite.config.js',
 ];
 
 

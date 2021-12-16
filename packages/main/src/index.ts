@@ -50,6 +50,22 @@ const createWindow = async () => {
 
 
     await mainWindow.loadURL(pageUrl);
+
+    const secondWindow = new BrowserWindow({
+        show: true, // Use 'ready-to-show' event to show window
+        webPreferences: {
+            nativeWindowOpen: true,
+            webviewTag: false, // The webview tag is not recommended. Consider alternatives like iframe or Electron's BrowserView. https://www.electronjs.org/docs/latest/api/webview-tag#warning
+            preload: join(__dirname, '../../preload/dist/index.cjs'),
+        },
+    });
+
+    console.log(import.meta.env.VITE_STARTER_SERVER_URL);
+    // VITE_DEV_SERVER_LOGIN_URL
+    const starterUrl = isDevelopment && import.meta.env.VITE_STARTER_SERVER_URL !== undefined
+        ? import.meta.env.VITE_STARTER_SERVER_URL
+        : new URL('../starter/dist/index.html', 'file://' + __dirname).toString();
+    await secondWindow.loadURL(starterUrl);
 };
 
 
@@ -61,19 +77,6 @@ app.on('second-instance', () => {
         mainWindow.focus();
     }
 });
-
-// if (isDevelopment) {
-//     app.on('certificate-error', (event, webContents, url, error, certificate, callback) => {
-//         const regex = new RegExp('https://localhost:8080/*')
-
-//         if (regex.test(url)) {
-//             event.preventDefault()
-//             callback(true)
-//         } else {
-//             callback(false)
-//         }
-//     })
-// }
 
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
