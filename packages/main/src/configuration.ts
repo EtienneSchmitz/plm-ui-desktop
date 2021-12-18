@@ -11,8 +11,8 @@ interface Workspace {
 const path: string = app.getPath('userData') + '/plm.json';
 
 let configuration: { workspace: Workspace[] } = {
-    workspace: []
-}
+    workspace: [],
+};
 
 // TODO : Check error ?
 function saveConfiguration() {
@@ -39,4 +39,4 @@ export default {
     init,
     get_open_workspace,
     get_recent_workspace,
-}
+};

@@ -1,7 +1,8 @@
-import {createApp} from 'vue';
-import App from '/@/App.vue';
-import router from '/@/router';
+const button = document.getElementById("open_folder");
 
-createApp(App)
-  .use(router)
-  .mount('#app');
+button?.addEventListener("click", () => {
+    window.ipcRenderer.send('starter-folder');
+});
+
+
+export {};
