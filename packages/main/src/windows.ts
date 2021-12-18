@@ -68,10 +68,8 @@ export const createMainWindow = async (development: boolean, workspace: Workspac
 
     await w.loadURL(pageUrl);
 
-    w.webContents.once('dom-ready', () => {
-        console.log("test");
-        w.webContents.send('app:init', { path: workspace.path });
-    });
+    w.webContents.send('app:init', { path: workspace.path });
+
 };
 
 export function get_windows(): SaveWindows[] {
