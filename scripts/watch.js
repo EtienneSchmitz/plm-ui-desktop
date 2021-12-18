@@ -124,6 +124,13 @@ const setupPreloadPackageWatcher = (viteDevServer, starterServer) => {
 
 (async () => {
     try {
+        const starterDevServer = await createServer({
+            ...sharedConfig,
+            configFile: 'packages/starter/vite.config.js',
+        });
+
+        await starterDevServer.listen();
+
         const viteDevServer = await createServer({
             ...sharedConfig,
             configFile: 'packages/renderer/vite.config.js',
@@ -131,12 +138,6 @@ const setupPreloadPackageWatcher = (viteDevServer, starterServer) => {
 
         await viteDevServer.listen();
 
-        const starterDevServer = await createServer({
-            ...sharedConfig,
-            configFile: 'packages/starter/vite.config.js',
-        });
-
-        await starterDevServer.listen();
 
         await setupPreloadPackageWatcher(viteDevServer, starterDevServer);
         await setupMainPackageWatcher(viteDevServer, starterDevServer);
