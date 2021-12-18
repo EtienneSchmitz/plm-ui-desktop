@@ -1,3 +1,24 @@
+$bg_menu : #292929;
+$bg_main : #323232;
+
+body {
+    margin: 0;
+}
+
 a {
     color: red;
+}
+
+#app-grid {
+    display: grid;
+    grid-template-columns: [first] 4% [second] auto
+}
+
+#menu-bar {
+    height: 100vh;
+    background-color: $bg_menu;
+}
+
+#main {
+    background-color: $bg_main;
 }
