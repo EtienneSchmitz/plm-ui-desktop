@@ -1,6 +1,6 @@
-const button = document.getElementById("open_folder");
+const button = document.getElementById('open_folder');
 
-button?.addEventListener("click", () => {
+button?.addEventListener('click', () => {
     window.ipcRenderer.send('starter-folder');
 });
 

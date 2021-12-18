@@ -14,18 +14,6 @@ export default defineComponent({
       tasks: [] as { ID: number; Name: string }[],
     };
   },
-  created() {
-    fetch("http://localhost:8080/tasks", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((tasks) => {
-        this.tasks = tasks;
-      });
-  },
 });
 </script>
 

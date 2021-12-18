@@ -3,7 +3,7 @@ import * as fs from 'fs';
 
 app.getPath('userData');
 
-interface Workspace {
+export interface Workspace {
     path: string;
     open?: boolean;
 }
@@ -17,6 +17,11 @@ let configuration: { workspace: Workspace[] } = {
 // TODO : Check error ?
 function saveConfiguration() {
     fs.writeFileSync(path, JSON.stringify(configuration));
+}
+
+function register_new_workspace(workspace: Workspace) {
+    configuration.workspace.push(workspace);
+    saveConfiguration();
 }
 
 function init() {
@@ -39,4 +44,5 @@ export default {
     init,
     get_open_workspace,
     get_recent_workspace,
+    register_new_workspace,
 };
