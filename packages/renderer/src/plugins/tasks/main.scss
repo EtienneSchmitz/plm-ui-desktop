@@ -1,0 +1,12 @@
+.task {
+    display: flex;
+    align-self: center;
+    margin: 10px 10px 10px 10px;
+    border-bottom: 1px solid #ccc;
+    color: white;
+}
+
+.task p {
+    display: inline-block;
+    margin: 0;
+}

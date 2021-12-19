@@ -1,14 +1,14 @@
-import { createApp } from 'vue';
-import App from '/@/App.vue';
-import router from '/@/router';
 import type { IpcRendererEvent } from 'electron';
 import type { InitOptions } from './../../shared/types/event/window';
 
-
-createApp(App)
-.use(router)
-.mount('#app');
+import { TaskPlugin } from './plugins/tasks';
 
 window.electron.once('app:init', (event: IpcRendererEvent, arg: InitOptions) => {
     arg;
 });
+
+const taskPlugin = new TaskPlugin();
+
+taskPlugin.display();
+
+
