@@ -1,6 +1,11 @@
 $bg_menu: #292929;
 $bg_main: #323232;
 
+@font-face {
+    font-family: 'Inter';
+    src: url(../assets/fonts/Inter-VariableFont_slnt\,wght.ttf);
+}
+
 body {
     margin: 0;
 }
@@ -24,3 +29,4 @@ a {
 }
 
 @import url(../src/plugins/tasks/main.scss);
+
